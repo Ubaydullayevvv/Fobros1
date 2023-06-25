@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
-import {Button, Dropdown, Form, FormControl, InputGroup} from 'react-bootstrap';
+import {Accordion, Col, Container, Dropdown, Form, FormControl, InputGroup, Row} from 'react-bootstrap';
 import './DropdownInput.css';
 import citiesJson from '../../assets/citiesJson.json';
-import facebookLogo from '../../assets/images/facebook.png';
 import googleLogo from '../../assets/images/google.png';
 import myMovingReviewsLogo from '../../assets/images/my-moving-reviews.png';
 import trustPilotLogo from '../../assets/images/trustpilot.png';
 import transportReviewsLogo from '../../assets/images/transport-reviews.png';
 import Testimonial from "../Testimonial";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faClipboardList} from '@fortawesome/free-solid-svg-icons';
+import {
+    faClipboardList, faHouse,
+    faLocationDot,
+} from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
 
@@ -81,6 +83,16 @@ const Home = () => {
             feedback: "I'm incredibly grateful for Stephen's assistance with Fobros. He assisted me all the way from Houston to California. Stephen watched the movement until it reached California, so I didn't have to wait too long for my automobile to show up. I appreciate his helpful customer service. I'm incredibly pleased."
         },
     ];
+
+    const [activePanel, setActivePanel] = useState('');
+
+    const handlePanelToggle = (panelId: any) => {
+        setActivePanel(activePanel === panelId ? '' : panelId);
+    };
+
+    const renderButtonIcon = (panelId: any) => {
+        return activePanel === panelId ? '-' : '+';
+    };
     return (
         <>
             <div className="marquee">
@@ -290,14 +302,15 @@ const Home = () => {
                     <div className="container">
                         <div className="row justify-content-center mb-5">
                             <div className="col-md-7 text-center border-primary">
-                                <h2 className="font-weight-light text-primary" data-aos="fade">
+                                <h3 className="font-weight-bold text-primary" data-aos="fade">
                                     Testimonials
-                                </h2>
+                                </h3>
                             </div>
                         </div>
                         <div className="row">
                             {testimonialList.map(
                                 value => <Testimonial
+                                    key={value.name}
                                     name={value.name}
                                     rating={value.rating}
                                     socialNetworkLink={value.socialNetworkLink}
@@ -315,45 +328,42 @@ const Home = () => {
                     <div className="container">
                         <div className="row justify-content-center mb-5">
                             <div className="col-md-7 text-center border-primary">
-                                <h2 className="mb-0 text-primary">Steps to Book with Fobros Group LLC</h2>
-                                <p className="color-black-opacity-5">Lorem ipsum dolor sit amet.</p>
+                                <h3 className="mb-0 font-weight-bold text-primary">Steps to Book with Fobros Group
+                                    LLC</h3>
+                                <p className="color-black-opacity-5"></p>
                             </div>
                         </div>
                         <div className="row align-items-stretch">
                             <div className="col-md-6 col-lg-4 mb-4 mb-lg-0">
                                 <div className="unit-4 d-flex">
                                     <div className="unit-4-icon mr-4">
-                                        <FontAwesomeIcon icon={faClipboardList} size="2x" style={{ color: 'orange' }}/>
+                                        <FontAwesomeIcon icon={faClipboardList} size="2x" style={{color: 'orange'}}/>
                                     </div>
                                     <div>
-                                        <h3>Air Freight</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
-                                            molestiae vitae eligendi at.</p>
-                                        <p className="mb-0"><a href="#">Learn More</a></p>
+                                        <h3>Get a Quote</h3>
+                                        <p>Our simple online quote system streamlines your car shipping experience.</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-4 mb-4 mb-lg-0">
                                 <div className="unit-4 d-flex">
-                                    <div className="unit-4-icon mr-4"><span
-                                        className="text-primary flaticon-sea-ship-with-containers"></span></div>
+                                    <div className="unit-4-icon mr-4">
+                                        <FontAwesomeIcon icon={faLocationDot} size="2x" style={{color: 'orange'}}/>
+                                    </div>
                                     <div>
-                                        <h3>Ocean Freight</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
-                                            molestiae vitae eligendi at.</p>
-                                        <p className="mb-0"><a href="#">Learn More</a></p>
+                                        <h3>Pickup Process</h3>
+                                        <p>Our Professional team expertly loads and secures your vehicle.</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-4 mb-4 mb-lg-0">
                                 <div className="unit-4 d-flex">
-                                    <div className="unit-4-icon mr-4"><span
-                                        className="text-primary flaticon-frontal-truck"></span></div>
+                                    <div className="unit-4-icon mr-4">
+                                        <FontAwesomeIcon icon={faHouse} size="2x" style={{color: 'orange'}}/>
+                                    </div>
                                     <div>
-                                        <h3>Ground Shipping</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
-                                            molestiae vitae eligendi at.</p>
-                                        <p className="mb-0"><a href="#">Learn More</a></p>
+                                        <h3>Receive your vehicle</h3>
+                                        <p>Thorough inspection ensures your car arrives in perfect condition.</p>
                                     </div>
                                 </div>
                             </div>
@@ -361,8 +371,204 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+                {/*Frequently asked questions*/}
+                <div className="site-section bg-light">
+                    <div className="container">
+                        <div className="row justify-content-center mb-5">
+                            <div className="col-md-7 text-center border-primary">
+                                <h2 className="font-weight-light text-primary">Frequently asked questions</h2>
+                                <p className="color-black-opacity-5">We Offer The Following Services</p>
+                            </div>
+                        </div>
+                        <div className="accordion" id="accordionExample">
+                            <div className="card">
+                                <div className="card-header" id="headingOne">
+                                    <h2 className="mb-0">
+                                        <button
+                                            className="btn btn-link btn-block text-left"
+                                            type="button"
+                                            onClick={() => handlePanelToggle('collapseOne')}
+                                            aria-expanded={activePanel === 'collapseOne'}
+                                            aria-controls="collapseOne"
+                                        >
+                                            Collapsible Group Item #1
+                                        </button>
+                                        <button
+                                            className="btn btn-link btn-toggle"
+                                            type="button"
+                                            onClick={() => handlePanelToggle('collapseOne')}
+                                            aria-expanded={activePanel === 'collapseOne'}
+                                            aria-controls="collapseOne"
+                                        >
+                                            {renderButtonIcon('collapseOne')}
+                                        </button>
+                                    </h2>
+                                </div>
 
+                                <div
+                                    id="collapseOne"
+                                    className={`collapse ${activePanel === 'collapseOne' ? 'show' : ''}`}
+                                    aria-labelledby="headingOne"
+                                    data-parent="#accordionExample"
+                                >
+                                    <div className="card-body">
+                                        Some placeholder content for the first accordion panel. This panel is shown by
+                                        default, thanks to the
+                                        <code>.show</code> class.
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div className="card">
+                                <div className="card-header" id="headingTwo">
+                                    <h2 className="mb-0">
+                                        <button
+                                            className="btn btn-link btn-block text-left collapsed"
+                                            type="button"
+                                            onClick={() => handlePanelToggle('collapseTwo')}
+                                            aria-expanded={activePanel === 'collapseTwo'}
+                                            aria-controls="collapseTwo"
+                                        >
+                                            Collapsible Group Item #2
+                                        </button>
+                                        <button
+                                            className="btn btn-link btn-toggle"
+                                            type="button"
+                                            onClick={() => handlePanelToggle('collapseTwo')}
+                                            aria-expanded={activePanel === 'collapseTwo'}
+                                            aria-controls="collapseTwo"
+                                        >
+                                            {renderButtonIcon('collapseTwo')}
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div
+                                    id="collapseTwo"
+                                    className={`collapse ${activePanel === 'collapseTwo' ? 'show' : ''}`}
+                                    aria-labelledby="headingTwo"
+                                    data-parent="#accordionExample"
+                                >
+                                    <div className="card-body">
+                                        Some placeholder content for the second accordion panel. This panel is hidden by
+                                        default.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="card">
+                                <div className="card-header" id="headingThree">
+                                    <h2 className="mb-0">
+                                        <button
+                                            className="btn btn-link btn-block text-left collapsed"
+                                            type="button"
+                                            onClick={() => handlePanelToggle('collapseThree')}
+                                            aria-expanded={activePanel === 'collapseThree'}
+                                            aria-controls="collapseThree"
+                                        >
+                                            Collapsible Group Item #3
+                                        </button>
+                                        <button
+                                            className="btn btn-link btn-toggle"
+                                            type="button"
+                                            onClick={() => handlePanelToggle('collapseThree')}
+                                            aria-expanded={activePanel === 'collapseThree'}
+                                            aria-controls="collapseThree"
+                                        >
+                                            {renderButtonIcon('collapseThree')}
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div
+                                    id="collapseThree"
+                                    className={`collapse ${activePanel === 'collapseThree' ? 'show' : ''}`}
+                                    aria-labelledby="headingThree"
+                                    data-parent="#accordionExample"
+                                >
+                                    <div className="card-body">
+                                        And lastly, the placeholder content for the third and final accordion panel.
+                                        This panel is hidden by
+                                        default.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row align-items-stretch">
+                            <div className="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                                <div className="unit-4 d-flex">
+                                    <div className="unit-4-icon mr-4"><span
+                                        className="text-primary flaticon-travel"></span></div>
+                                    <div>
+                                        <h3>Air Air Freight</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
+                                            molestiae vitae eligendi at.</p>
+                                        <p><a href="#">Learn More</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                                <div className="unit-4 d-flex">
+                                    <div className="unit-4-icon mr-4"><span
+                                        className="text-primary flaticon-sea-ship-with-containers"></span></div>
+                                    <div>
+                                        <h3>Ocean Freight</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
+                                            molestiae vitae eligendi at.</p>
+                                        <p><a href="#">Learn More</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                                <div className="unit-4 d-flex">
+                                    <div className="unit-4-icon mr-4"><span
+                                        className="text-primary flaticon-frontal-truck"></span></div>
+                                    <div>
+                                        <h3>Ground Shipping</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
+                                            molestiae vitae eligendi at.</p>
+                                        <p><a href="#">Learn More</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                                <div className="unit-4 d-flex">
+                                    <div className="unit-4-icon mr-4"><span
+                                        className="text-primary flaticon-barn"></span></div>
+                                    <div>
+                                        <h3>Warehousing</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
+                                            molestiae vitae eligendi at.</p>
+                                        <p><a href="#">Learn More</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                                <div className="unit-4 d-flex">
+                                    <div className="unit-4-icon mr-4"><span
+                                        className="text-primary flaticon-platform"></span></div>
+                                    <div>
+                                        <h3>Storage</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
+                                            molestiae vitae eligendi at.</p>
+                                        <p><a href="#">Learn More</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                                <div className="unit-4 d-flex">
+                                    <div className="unit-4-icon mr-4"><span
+                                        className="text-primary flaticon-car"></span></div>
+                                    <div>
+                                        <h3>Delivery Van</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis
+                                            molestiae vitae eligendi at.</p>
+                                        <p><a href="#">Learn More</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {/*    FOOTER   */
                 }
                 <footer className="site-footer">

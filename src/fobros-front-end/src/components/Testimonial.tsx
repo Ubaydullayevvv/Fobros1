@@ -41,7 +41,7 @@ const Testimonial: FunctionComponent<TestimonialProps> = ({
                 data-aos-delay={aosDelayTime}
             >
                 <div className="person">
-                    <h2>{name}</h2>
+                    <h5>{name}</h5>
                     <div className="d-flex justify-content-between">
                         <div className="ratings">{stars}</div>
                         <a href={socialNetworkLink}>
