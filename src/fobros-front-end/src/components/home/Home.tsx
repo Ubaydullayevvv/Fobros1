@@ -391,7 +391,7 @@ const Home = () => {
                                             aria-expanded={activePanel === 'collapseOne'}
                                             aria-controls="collapseOne"
                                         >
-                                            Collapsible Group Item #1
+                                            How much does it cost to ship with Fobros Group LLC ?
                                         </button>
                                         <button
                                             className="btn btn-link btn-toggle"
@@ -412,8 +412,8 @@ const Home = () => {
                                     data-parent="#accordionExample"
                                 >
                                     <div className="card-body">
-                                        Some placeholder content for the first accordion panel. This panel is shown by
-                                        default, thanks to the
+                                        The cost of shipping an automobile with Fobros Group LLC is determined by various criteria, including the distance of the shipment, the type of vehicle, and the level of service you desire. We provide reasonable prices and free quotations to assist you get a better understanding of the cost.
+
                                         <code>.show</code> class.
                                     </div>
                                 </div>
@@ -429,7 +429,8 @@ const Home = () => {
                                             aria-expanded={activePanel === 'collapseTwo'}
                                             aria-controls="collapseTwo"
                                         >
-                                            Collapsible Group Item #2
+                                            How long does it take to ship a car?
+
                                         </button>
                                         <button
                                             className="btn btn-link btn-toggle"
@@ -449,8 +450,8 @@ const Home = () => {
                                     data-parent="#accordionExample"
                                 >
                                     <div className="card-body">
-                                        Some placeholder content for the second accordion panel. This panel is hidden by
-                                        default.
+                                        When you place an order, you will receive an estimated transit time for your shipment. This will give you a window for when your car will be delivered. Transit times depend on moving distance. With each delivery being unique, it is possible that your car would be delivered faster than the estimated transit time provided.
+
                                     </div>
                                 </div>
                             </div>
@@ -465,7 +466,8 @@ const Home = () => {
                                             aria-expanded={activePanel === 'collapseThree'}
                                             aria-controls="collapseThree"
                                         >
-                                            Collapsible Group Item #3
+                                            Is my vehicle insured during transport?
+
                                         </button>
                                         <button
                                             className="btn btn-link btn-toggle"
@@ -478,6 +480,7 @@ const Home = () => {
                                         </button>
                                     </h2>
                                 </div>
+
                                 <div
                                     id="collapseThree"
                                     className={`collapse ${activePanel === 'collapseThree' ? 'show' : ''}`}
@@ -485,9 +488,46 @@ const Home = () => {
                                     data-parent="#accordionExample"
                                 >
                                     <div className="card-body">
-                                        And lastly, the placeholder content for the third and final accordion panel.
-                                        This panel is hidden by
-                                        default.
+                                        Yes, your vehicle will be covered by the carrier’s cargo insurance. Additionally, we have our own contingent cargo insurance, which protects you for up to $250,000 should the truckers policy fail to fully cover a valid claim.
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card">
+                                <div className="card-header" id="headingFour">
+                                    <h2 className="mb-0">
+                                        <button
+                                            className="btn btn-link btn-block text-left collapsed"
+                                            type="button"
+                                            onClick={() => handlePanelToggle('collapseFour')}
+                                            aria-expanded={activePanel === 'collapseFour'}
+                                            aria-controls="collapseFour"
+                                        >
+                                            Can I pack items in my car?
+
+
+                                        </button>
+                                        <button
+                                            className="btn btn-link btn-toggle"
+                                            type="button"
+                                            onClick={() => handlePanelToggle('collapseFour')}
+                                            aria-expanded={activePanel === 'collapseFour'}
+                                            aria-controls="collapseFour"
+                                        >
+                                            {renderButtonIcon('collapseFour')}
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div
+                                    id="collapseFour"
+                                    className={`collapse ${activePanel === 'collapseFour' ? 'show' : ''}`}
+                                    aria-labelledby="headingThree"
+                                    data-parent="#accordionExample"
+                                >
+                                    <div className="card-body">
+                                        You can put personal items up to 200 lbs. in a box or single piece of luggage that will be in the trunk of the car during transport.
+
                                     </div>
                                 </div>
                             </div>
